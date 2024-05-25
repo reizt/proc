@@ -1,5 +1,5 @@
 import type { z } from 'zod';
-import type { NeverIfEmpty } from './utility-types';
+import type { NeverIfEmpty, ValueOf } from './utility-types';
 
 export interface Proc {
 	input: { [key: string]: z.ZodType<any, any, any> };
@@ -10,7 +10,6 @@ export type ProcInput<P extends Proc> = {
 	[K in keyof P['input']]: z.infer<P['input'][K]>;
 };
 
-type ValueOf<T> = T[keyof T];
 export type ProcOutput<P extends Proc> = ValueOf<{
 	[R in keyof P['output']]: ProcResult<P, R>;
 }>;
@@ -33,3 +32,4 @@ export const procResultBuilder = <P extends Proc>() => {
 };
 
 export type ProcImpl<P extends Proc> = (input: ProcInput<P>) => Promise<ProcOutput<P>>;
+export type ProcImplWithContext<P extends Proc, Context extends Record<string, any>> = (input: ProcInput<P>, ctx: Context) => Promise<ProcOutput<P>>;
