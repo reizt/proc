@@ -1,0 +1,43 @@
+{
+	"name": "@reizt/proc",
+	"version": "0.0.1-alpha.1",
+	"repository": "git@github.com:reizt/proc.git",
+	"author": "reizt <reizt.dev@gmail.com>",
+	"license": "MIT",
+	"main": "./lib/cjs/index.js",
+	"types": "./lib/types/index.d.ts",
+	"module": "./lib/esm/index.mjs",
+	"exports": {
+		".": {
+			"import": "./lib/esm/index.js",
+			"require": "./lib/cjs/index.js",
+			"types": "./lib/types/index.d.ts"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": ["lib/cjs/**/*.js", "lib/esm/**/*.js", "lib/types/**/*.d.ts"],
+	"scripts": {
+		"build": "run-s clean build.*",
+		"clean": "rm -rf lib/*",
+		"build.cjs": "tsc --project tsconfig.cjs.json",
+		"build.esm": "tsc --project tsconfig.esm.json",
+		"build.types": "tsc --project tsconfig.types.json",
+		"check": "run-p check.types check.biome",
+		"fmt": "biome check --apply .",
+		"check.biome": "biome check .",
+		"check.types": "tsc --incremental --noEmit --project tsconfig.test.json",
+		"test": "vitest run",
+		"test.watch": "vitest watch"
+	},
+	"dependencies": {
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.7.3",
+		"@types/node": "^20.12.11",
+		"lefthook": "^1.6.10",
+		"npm-run-all": "^4.1.5",
+		"typescript": "^5.4.5",
+		"vitest": "^1.6.0"
+	}
+}
