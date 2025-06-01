@@ -23,7 +23,10 @@ export type ProcResult<P extends Proc, R extends keyof P['output']> = {
 }>;
 
 export const procResultBuilder = <P extends Proc>() => {
-	return <R extends keyof P['output']>(result: R, ...args: ProcResult<P, R> extends { value: any } ? [ProcResult<P, R>['value']] : []): ProcResult<P, R> => {
+	return <R extends keyof P['output']>(
+		result: R,
+		...args: ProcResult<P, R> extends { value: any } ? [ProcResult<P, R>['value']] : []
+	): ProcResult<P, R> => {
 		return {
 			result: result,
 			value: args[0],
@@ -32,4 +35,7 @@ export const procResultBuilder = <P extends Proc>() => {
 };
 
 export type ProcImpl<P extends Proc> = (input: ProcInput<P>) => Promise<ProcOutput<P>>;
-export type ProcImplWithContext<P extends Proc, Context extends Record<string, any>> = (input: ProcInput<P>, ctx: Context) => Promise<ProcOutput<P>>;
+export type ProcImplWithContext<P extends Proc, Context extends Record<string, any>> = (
+	input: ProcInput<P>,
+	ctx: Context,
+) => Promise<ProcOutput<P>>;
