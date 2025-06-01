@@ -1,8 +1,8 @@
 import type { Context, Hono } from 'hono';
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
 import { cookies } from 'next/headers';
-import type { ProcImpl, RequestMeta } from '.';
 import type { Proc, ProcInput } from '../proc';
+import type { ProcImpl, RequestMeta } from './types';
 
 const handler = async <P extends Proc>(proc: P, impl: ProcImpl<P>, rawInput: ProcInput<P>, c: Context) => {
 	let input: ProcInput<P> = rawInput;

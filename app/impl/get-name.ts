@@ -1,4 +1,4 @@
-import { type ProcImpl, err, ok } from '@reizt/proc/server';
+import { type ProcImpl, err, ok } from '../../src/server/types';
 import type { getName } from '../core/get-name';
 
 export const getNameImpl: ProcImpl<typeof getName> = async (input, meta) => {

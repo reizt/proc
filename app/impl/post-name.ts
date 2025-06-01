@@ -1,4 +1,4 @@
-import { type ProcImpl, err, ok } from '@reizt/proc/server';
+import { type ProcImpl, err, ok } from '../../src/server/types';
 import type { postName } from '../core/post-name';
 
 export const postNameImpl: ProcImpl<typeof postName> = async (input, meta) => {

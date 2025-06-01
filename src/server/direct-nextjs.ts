@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
-import { type ProcImpl, type RequestMeta, type ServerProcResult, err, ok } from '.';
 import type { Proc, ProcInput, ProcOutput } from '../proc';
+import { type ProcImpl, type RequestMeta, type ServerProcResult, err, ok } from './types';
 
 export const directCallProc = async <P extends Proc>(
 	proc: P,
