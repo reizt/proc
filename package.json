@@ -1,6 +1,6 @@
 {
 	"name": "@reizt/proc",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"repository": "git@github.com:reizt/proc.git",
 	"author": "reizt <reizt.dev@gmail.com>",
 	"license": "MIT",
@@ -12,6 +12,11 @@
 			"types": "./lib/types/index.d.ts",
 			"require": "./lib/cjs/index.js",
 			"import": "./lib/esm/index.js"
+		},
+		"./server": {
+			"types": "./lib/types/server/index.d.ts",
+			"require": "./lib/cjs/server/index.js",
+			"import": "./lib/esm/server/index.js"
 		},
 		"./package.json": "./package.json"
 	},
