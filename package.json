@@ -1,6 +1,6 @@
 {
 	"name": "@reizt/proc",
-	"version": "0.0.1-alpha.4",
+	"version": "1.0.0",
 	"repository": "git@github.com:reizt/proc.git",
 	"author": "reizt <reizt.dev@gmail.com>",
 	"license": "MIT",
