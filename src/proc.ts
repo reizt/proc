@@ -1,41 +1,26 @@
-import type { z } from 'zod';
-import type { NeverIfEmpty, ValueOf } from './utility-types';
+import type { ZodObject, ZodTypeAny, z } from 'zod';
 
 export interface Proc {
-	input: { [key: string]: z.ZodType<any, any, any> };
-	output: { [result: string]: { [key: string]: z.ZodType<any, any, any> } };
+	method: 'get' | 'post' | 'put' | 'patch' | 'delete';
+	path: string;
+	input: ZodObject<any> | null;
+	output: ZodTypeAny | null;
+	error: string[];
 }
 
-export type ProcInput<P extends Proc> = {
-	[K in keyof P['input']]: z.infer<P['input'][K]>;
-};
+type NullableInfer<T> = T extends ZodTypeAny ? z.infer<T> : null;
+type ItemOf<T> = T extends Array<infer U> ? U : never;
 
-export type ProcOutput<P extends Proc> = ValueOf<{
-	[R in keyof P['output']]: ProcResult<P, R>;
-}>;
+export type ProcInput<P extends Proc> = NullableInfer<P['input']>;
+export type ProcOutput<P extends Proc> = NullableInfer<P['output']>;
+export type ProcError<P extends Proc> = ItemOf<P['error']> | 'schema_error';
 
-export type ProcResult<P extends Proc, R extends keyof P['output']> = {
-	result: R;
-} & NeverIfEmpty<{
-	value: {
-		[K in keyof P['output'][R]]: z.infer<P['output'][R][K]>;
-	};
-}>;
-
-export const procResultBuilder = <P extends Proc>() => {
-	return <R extends keyof P['output']>(
-		result: R,
-		...args: ProcResult<P, R> extends { value: any } ? [ProcResult<P, R>['value']] : []
-	): ProcResult<P, R> => {
-		return {
-			result: result,
-			value: args[0],
-		} as ProcResult<P, R>;
-	};
-};
-
-export type ProcImpl<P extends Proc> = (input: ProcInput<P>) => Promise<ProcOutput<P>>;
-export type ProcImplWithContext<P extends Proc, Context extends Record<string, any>> = (
-	input: ProcInput<P>,
-	ctx: Context,
-) => Promise<ProcOutput<P>>;
+export type ProcResult<P extends Proc> =
+	| {
+			success: true;
+			output: ProcOutput<P>;
+	  }
+	| {
+			success: false;
+			error: ProcError<P>;
+	  };
