@@ -1,4 +1,5 @@
 import type { Context, Hono } from 'hono';
+import type { ContentfulStatusCode } from 'hono/utils/http-status';
 import { cookies } from 'next/headers';
 import type { ProcImpl, RequestMeta } from '.';
 import type { Proc, ProcInput } from '../proc';
@@ -38,7 +39,16 @@ const handler = async <P extends Proc>(proc: P, impl: ProcImpl<P>, rawInput: Pro
 		}
 	}
 	if (!result.success) {
-		return c.text(result.error, 400);
+		const errorCode = proc.errors[result.error as keyof typeof proc.errors] ?? 'bad_request';
+		const statusCode = {
+			bad_request: 400,
+			unauthorized: 401,
+			forbidden: 403,
+			not_found: 404,
+			method_not_allowed: 405,
+			internal_server_error: 500,
+		}[errorCode];
+		return c.text(result.error as string, statusCode as ContentfulStatusCode);
 	}
 	if (result.output == null) {
 		return new Response(null, { status: 204 });
@@ -47,14 +57,13 @@ const handler = async <P extends Proc>(proc: P, impl: ProcImpl<P>, rawInput: Pro
 };
 
 const getHandler = async <P extends Proc>(proc: P, impl: ProcImpl<P>, c: Context) => {
-	const input = proc.input?.parse(c.req.query()) ?? null;
-	return handler(proc, impl, input as ProcInput<P>, c);
+	const q = Object.fromEntries(Object.entries(c.req.query()).map(([key, value]) => [key, JSON.parse(value)]));
+	return handler(proc, impl, q as ProcInput<P>, c);
 };
 
 const postLikeHandler = async <P extends Proc>(proc: P, impl: ProcImpl<P>, c: Context) => {
 	const body = await c.req.json();
-	const input = proc.input?.parse(body) ?? null;
-	return handler(proc, impl, input as ProcInput<P>, c);
+	return handler(proc, impl, body as ProcInput<P>, c);
 };
 
 export const registerProcs = (

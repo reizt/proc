@@ -17,7 +17,7 @@ export class ProcRemoteClient {
 	}
 
 	async #get<P extends Proc>(proc: P, input: ProcInput<P>): Promise<Response> {
-		const url = new URL(proc.path, this.baseUrl);
+		const url = new URL(`${this.baseUrl}${proc.path}`);
 		if (proc.input != null) {
 			for (const key in proc.input.shape) {
 				if ((input as any)[key] == null) continue;
@@ -28,8 +28,7 @@ export class ProcRemoteClient {
 	}
 
 	async #postLike<P extends Proc>(proc: P, input: ProcInput<P>): Promise<Response> {
-		const url = new URL(proc.path, this.baseUrl);
-		return await fetch(url.toString(), {
+		return await fetch(`${this.baseUrl}${proc.path}`, {
 			method: proc.method,
 			body: JSON.stringify(input),
 		});

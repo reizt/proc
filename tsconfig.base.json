@@ -1,5 +1,5 @@
 {
-	"include": ["src/**/*.ts", "*.ts", "*.mts", "app/**/*.ts", "app/**/*.tsx"],
+	"include": ["src/**/*.ts", "*.ts", "*.mts"],
 	"exclude": ["node_modules", "src/**/*.test.ts"],
 	"references": [
 		{
@@ -7,25 +7,16 @@
 		}
 	],
 	"compilerOptions": {
-		// target
 		"target": "ES2022",
 		"module": "ES2022",
 		"moduleResolution": "Node",
-		// paths
 		"outDir": "tmp",
-		"paths": {
-			"@reizt/proc": ["./src/index.ts"],
-			"@reizt/proc/server": ["./src/server/index.ts"]
-		},
-		// transpilation
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"incremental": true,
 		"skipLibCheck": true,
 		"isolatedModules": true,
 		"forceConsistentCasingInFileNames": true,
-		"jsx": "react-jsx",
-		// syntax
 		"strict": true,
 		"verbatimModuleSyntax": true,
 		"noImplicitReturns": true,

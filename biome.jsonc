@@ -5,7 +5,7 @@
 	},
 	"files": {
 		"include": ["**/*"],
-		"ignore": ["node_modules", "dist", ".turbo", ".next", "storybook-static", "tmp"]
+		"ignore": ["node_modules", "dist", ".next", "tmp", "lib"]
 	},
 	"formatter": {
 		"indentStyle": "tab",

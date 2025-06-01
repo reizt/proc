@@ -1,6 +1,7 @@
-/node_modules
-/lib/*
-/tmp
+node_modules/
+lib/*
+tmp/
+.next/
 
 .DS_Store
 *.env*
