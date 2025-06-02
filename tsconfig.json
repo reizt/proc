@@ -15,7 +15,7 @@
 		"outDir": "tmp",
 		"paths": {
 			"@reizt/proc": ["./src/index.ts"],
-			"@reizt/proc/server": ["src/server/types.ts"]
+			"@reizt/proc/server": ["./src/server/index.ts"]
 		},
 		// transpilation
 		"esModuleInterop": true,

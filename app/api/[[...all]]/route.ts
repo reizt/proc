@@ -1,6 +1,6 @@
+import { registerProcs } from '@reizt/proc/server';
 import { Hono } from 'hono';
 import { handle } from 'hono/vercel';
-import { registerProcs } from '../../../src/server/server-hono-nextjs';
 import { getName } from '../../core/get-name';
 import { postName } from '../../core/post-name';
 import { getNameImpl } from '../../impl/get-name';

@@ -1,4 +1,4 @@
-import { directCallProc } from '../src/server/direct-nextjs';
+import { directCallProc } from '@reizt/proc/server';
 import { getName } from './core/get-name';
 import { getNameImpl } from './impl/get-name';
 
