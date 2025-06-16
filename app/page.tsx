@@ -4,12 +4,12 @@ import { ServerGet } from './ServerGet';
 import { ServerPost } from './ServerPost';
 
 export default async function () {
-	return (
-		<div>
-			<ServerGet />
-			<ClientGet />
-			<ServerPost />
-			<ClientPost />
-		</div>
-	);
+  return (
+    <div>
+      <ServerGet />
+      <ClientGet />
+      <ServerPost />
+      <ClientPost />
+    </div>
+  );
 }

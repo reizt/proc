@@ -9,8 +9,8 @@ import { postNameImpl } from '../../impl/post-name';
 const app = new Hono().basePath('/api');
 
 registerProcs(app, (register) => {
-	register(getName, getNameImpl);
-	register(postName, postNameImpl);
+  register(getName, getNameImpl);
+  register(postName, postNameImpl);
 });
 
 export const GET = handle(app);

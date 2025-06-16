@@ -1,58 +1,59 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-	"organizeImports": {
-		"enabled": true
-	},
-	"files": {
-		"include": ["**/*"],
-		"ignore": ["node_modules", "dist", ".next", "tmp", "lib"]
-	},
-	"formatter": {
-		"indentStyle": "tab",
-		"lineWidth": 120
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "single"
-		}
-	},
-	"linter": {
-		"rules": {
-			"all": true,
-			"style": {
-				"noDefaultExport": "off",
-				"useNamingConvention": "off",
-				"noNamespace": "off",
-				"noParameterProperties": "off",
-				"useBlockStatements": "off",
-				"noNonNullAssertion": "off",
-				"useFilenamingConvention": "off",
-				"noImplicitBoolean": "off"
-			},
-			"performance": {
-				"noBarrelFile": "off",
-				"noReExportAll": "off",
-				"useTopLevelRegex": "off"
-			},
-			"correctness": {
-				"noUndeclaredVariables": "off",
-				"noUnusedVariables": "off",
-				"noNodejsModules": "off",
-				"useImportExtensions": "off",
-				"noUnusedFunctionParameters": "off"
-			},
-			"suspicious": {
-				"useAwait": "off",
-				"noConsole": "off",
-				"noConsoleLog": "off",
-				"noExplicitAny": "off",
-				"noEmptyBlockStatements": "off",
-				"noReactSpecificProps": "off"
-			},
-			"complexity": {
-				"noBannedTypes": "off",
-				"noExcessiveCognitiveComplexity": "off"
-			}
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "files": {
+    "include": ["**/*"],
+    "ignore": ["node_modules", "dist", ".next", "tmp", "lib"]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single"
+    }
+  },
+  "linter": {
+    "rules": {
+      "all": true,
+      "style": {
+        "noDefaultExport": "off",
+        "useNamingConvention": "off",
+        "noNamespace": "off",
+        "noParameterProperties": "off",
+        "useBlockStatements": "off",
+        "noNonNullAssertion": "off",
+        "useFilenamingConvention": "off",
+        "noImplicitBoolean": "off"
+      },
+      "performance": {
+        "noBarrelFile": "off",
+        "noReExportAll": "off",
+        "useTopLevelRegex": "off"
+      },
+      "correctness": {
+        "noUndeclaredVariables": "off",
+        "noUnusedVariables": "off",
+        "noNodejsModules": "off",
+        "useImportExtensions": "off",
+        "noUnusedFunctionParameters": "off"
+      },
+      "suspicious": {
+        "useAwait": "off",
+        "noConsole": "off",
+        "noConsoleLog": "off",
+        "noExplicitAny": "off",
+        "noEmptyBlockStatements": "off",
+        "noReactSpecificProps": "off"
+      },
+      "complexity": {
+        "noBannedTypes": "off",
+        "noExcessiveCognitiveComplexity": "off"
+      }
+    }
+  }
 }

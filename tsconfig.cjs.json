@@ -1,12 +1,12 @@
 {
-	"extends": "./tsconfig.base.json",
-	"include": ["src/**/*.ts"],
-	"exclude": ["**/*.test.ts"],
-	"compilerOptions": {
-		"baseUrl": "./src",
-		"outDir": "lib/cjs",
-		"module": "CommonJS",
-		"declaration": false,
-		"verbatimModuleSyntax": false
-	}
+  "extends": "./tsconfig.base.json",
+  "include": ["src/**/*.ts"],
+  "exclude": ["**/*.test.ts"],
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "lib/cjs",
+    "module": "CommonJS",
+    "declaration": false,
+    "verbatimModuleSyntax": false
+  }
 }

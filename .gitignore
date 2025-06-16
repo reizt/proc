@@ -2,6 +2,7 @@ node_modules/
 lib/*
 tmp/
 .next/
+.vscode/
 
 .DS_Store
 *.env*
