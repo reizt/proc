@@ -45,12 +45,12 @@ import { type ProcImpl, err, ok } from '@reizt/proc/server';
 import type { getFullName } from '~/procs/get-full-name';
 
 export const getFullNameImpl: ProcImpl<typeof getFullName> = async (input, meta) => {
-	if (input.firstName === 'John') {
-		return err('black_listed');
-	}
-	return ok({
-		fullName: `${input.firstName} ${input.lastName}`,
-	});
+  if (input.firstName === 'John') {
+    return err('black_listed');
+  }
+  return ok({
+    fullName: `${input.firstName} ${input.lastName}`,
+  });
 };
 ```
 
@@ -68,7 +68,7 @@ import { getFullNameImpl } from '~/backend/get-full-name';
 const app = new Hono().basePath('/api');
 
 registerProcs(app, (register) => {
-	register(getFullName, getFullNameImpl);
+  register(getFullName, getFullNameImpl);
 });
 
 export const GET = handle(app);
@@ -88,11 +88,11 @@ import { getFullName } from '~/procs/get-full-name';
 const api = new ProcRemoteClient('http://localhost:3000/api');
 
 export function ClientComponent() {
-	const [result, setResult] = useState<ProcResult<typeof getFullName> | null>(null);
+  const [result, setResult] = useState<ProcResult<typeof getFullName> | null>(null);
 
-	useEffect(() => {
-		api.call(getFullName, { firstName: 'Michael', lastName: 'Jackson' }).then(setResult);
-	}, []);
+  useEffect(() => {
+    api.call(getFullName, { firstName: 'Michael', lastName: 'Jackson' }).then(setResult);
+  }, []);
 
   if (result == null) {
     return <div>Loading...</div>;
@@ -114,12 +114,12 @@ import { getFullName } from '~/procs/get-full-name';
 import { getFullNameImpl } from '~/backend/get-full-name';
 
 export async function ServerComponent() {
-	const result = await directCallProc(getFullName, getFullNameImpl, {
-		firstName: 'Michael',
-		lastName: 'Jackson',
-	});
+  const result = await directCallProc(getFullName, getFullNameImpl, {
+    firstName: 'Michael',
+    lastName: 'Jackson',
+  });
 
-	if (!result.success) {
+  if (!result.success) {
     return <div>Error: {result.error}</div>
   }
 
