@@ -2,7 +2,7 @@ import type { Context, Hono } from 'hono';
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
 import { cookies } from 'next/headers';
 import type { Proc, ProcInput } from '../proc';
-import type { ProcImpl, RequestMeta } from './types';
+import type { ProcImpl, RequestMeta, ServerProcResult } from './types';
 
 const handler = async <P extends Proc>(proc: P, impl: ProcImpl<P>, rawInput: ProcInput<P>, c: Context) => {
   let input: ProcInput<P> = rawInput;
@@ -23,7 +23,13 @@ const handler = async <P extends Proc>(proc: P, impl: ProcImpl<P>, rawInput: Pro
     cookies: ckMap,
   };
 
-  const result = await impl(input as ProcInput<P>, requestMeta);
+  let result: ServerProcResult<P>;
+  try {
+    result = await impl(input as ProcInput<P>, requestMeta);
+  } catch (error) {
+    console.error(error);
+    return c.text('internal_server_error', 500);
+  }
   if (result.metadata?.redirect) {
     return c.redirect(result.metadata.redirect);
   }
