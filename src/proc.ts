@@ -1,6 +1,6 @@
 import type { ZodObject, ZodTypeAny, z } from 'zod';
 
-type ErrorCode =
+export type ErrorCode =
   | 'bad_request'
   | 'unauthorized'
   | 'forbidden'
