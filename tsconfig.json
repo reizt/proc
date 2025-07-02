@@ -13,10 +13,6 @@
     "moduleResolution": "Node",
     // paths
     "outDir": "tmp",
-    "paths": {
-      "@reizt/proc": ["./src/index.ts"],
-      "@reizt/proc/server": ["./src/server/index.ts"]
-    },
     // transpilation
     "esModuleInterop": true,
     "resolveJsonModule": true,

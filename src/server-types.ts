@@ -1,4 +1,4 @@
-import type { Proc, ProcError, ProcInput, ProcOutput, ProcResult } from '../proc';
+import type { Proc, ProcError, ProcInput, ProcOutput, ProcResult } from './proc';
 
 export type Cookie = {
   value: string;
