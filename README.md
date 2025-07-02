@@ -5,7 +5,7 @@ Simplify Next.js backend using zod.
 ## Installation
 
 ```sh
-npm install @reizt/proc
+npm install @reizt/proc @reizt/proc-nextjs
 ```
 
 ## Usage
